@@ -1,0 +1,11 @@
+NodeID	Betegnelse	Latitude	Longitude		
+1	Solhaugveien 5	60.377022	5.302793		
+2	Klauvsteinen 72	60.371167	5.306312		
+3	Strandlinjen 15	60.379589	5.318800		
+4	Fyllingsveien 20	60.385082	5.305840		
+5	Løvstakkveien 19	60.374795	5.331288		
+6	Grønnlien 77	60.369024	5.334850		
+7	Bøhmergaten 32	60.376322	5.332833		
+8	Løbergsveien 71	60.369003	5.338327		
+9	Edvard Griegs vei 26	60.375049	5.345794		
+10	Klaus Hanssens vei 35	60.378358	5.344978		
