@@ -53,23 +53,17 @@ def buildQueryStringFromNodes(qry_str_base, originNode, targetNodes, api_key):
 def filter_nodes(cmdargs, distances, origin_node, node_slice):
 
     # remove nodes already in the result distances
-    # distances_already_computed = [distance for distance in distances if [node for node in result_nodes if (distance.OriginNode['NodeId'] == origin_node['NodeId'] and distance.DestinationNode['NodeId'] == node['NodeId'])]]
     result_nodes = [node for node in node_slice if not [distance for distance in distances if (distance.OriginNode['NodeId'] == origin_node['NodeId'] and distance.DestinationNode['NodeId'] == node['NodeId'])]]
 
     # Remove origin -> origin computations
     result_nodes = [node for node in result_nodes if node['NodeId'] != origin_node['NodeId']]
 
-    # Remove 'duplicates' if legs are undirectional (A->B = B->A), and copy previous result into result instead
+    # Remove 'duplicates' if legs are undirectional (A->B = B->A)
     if result_nodes and cmdargs['undirected']:
         aliases = [distance for distance in distances if distance.DestinationNode['NodeId'] == origin_node['NodeId']]
         if aliases:
             result_nodes = [node for node in result_nodes if not [an for an in aliases if node['NodeId'] == an.OriginNode['NodeId']]]
 
-            # Add the 'reverse' distance to the result distances
-       #     reversed_nodes_distances = [Distance(d.DestinationNode, d.OriginNode, d.DistanceElement.copy()) for d in aliases]
-       #     distances.extend(reversed_nodes_distances)
-
-    # Instead inject the alias in the result set
     return result_nodes
 
 
@@ -80,6 +74,8 @@ def getDistanceMatrixFromGoogle(cmdargs, nodes, url, qry_str_base, api_key, max_
     # no more than 100 nodes are processed per 10 seconds
     # no more than 2500 nodes are processed per 24 hours
 
+    # TODO: Make this a bit smarter to better utilize the quotas
+    
     node_cnt = len(nodes)
 
     if cmdargs['resume']:
