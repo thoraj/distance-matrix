@@ -3,6 +3,8 @@ Example showing how to use Google Distance Matrix
 
 Python script showing how to use the Google Distance Matrix API to compute a distance matrix for a set of nodes/coordinates taken from a csv 
 
+Disclaimer: This is meant to be an example/proof-of-concept, and is not meant for production use. Please observe the terms and conditions for using Google Apis.
+
 ##Examples:
 
 **python distance-matrix.py --help**
